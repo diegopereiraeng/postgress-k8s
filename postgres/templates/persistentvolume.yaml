@@ -3,11 +3,11 @@ kind: PersistentVolume
 metadata:
   name: postgresql-pv
   labels:
+    type: local
     app: postgresql
 spec:
   capacity:
     storage: {{ .Values.postgresql.persistence.size }}
-  volumeMode: Filesystem
   accessModes:
     - {{ .Values.postgresql.persistence.accessMode }}
   storageClassName: {{ .Values.postgresql.persistence.storageClass }}

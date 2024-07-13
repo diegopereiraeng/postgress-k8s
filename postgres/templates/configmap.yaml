@@ -7,4 +7,3 @@ metadata:
 data:
   POSTGRES_DB: {{ .Values.postgresql.postgresDatabase }}
   POSTGRES_USER: {{ .Values.postgresql.postgresUser }}
-  POSTGRES_PASSWORD: {{ .Values.postgresql.postgresPassword }}

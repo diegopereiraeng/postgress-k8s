@@ -6,8 +6,8 @@ metadata:
     app: postgresql
 spec:
   accessModes:
-    - ReadWriteOnce  # Ensure this matches your requirements
+    - ReadWriteMany  
   resources:
     requests:
       storage: {{ .Values.postgresql.persistence.size }}
-  storageClassName: standard  # Replace with your desired storage class
+  storageClassName: manual
