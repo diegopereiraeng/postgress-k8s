@@ -9,7 +9,7 @@ spec:
   capacity:
     storage: {{ .Values.postgresql.persistence.size }}
   accessModes:
-    - {{ .Values.postgresql.persistence.accessMode }}
+    - ReadWriteMany
   storageClassName: {{ .Values.postgresql.persistence.storageClass }}
   hostPath:
     path: /data2/postgresql
