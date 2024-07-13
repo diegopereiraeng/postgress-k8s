@@ -14,4 +14,4 @@ postgresql:
     enabled: true
     storageClass: manual
     accessMode: ReadWriteMany
-    size: 10Gi
+    size: 5Gi
