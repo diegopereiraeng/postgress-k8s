@@ -1,6 +1,4 @@
 apiVersion: v2
 name: postgres
-description: A Helm chart for deploying PostgreSQL on Kubernetes
-type: application
 version: 0.1.0
-appVersion: 1.16.0
+description: PostgreSQL database deployment on Kubernetes
