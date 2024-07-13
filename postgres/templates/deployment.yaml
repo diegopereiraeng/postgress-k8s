@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "postgres.fullname" . }}
+  labels:
+    app: {{ template "postgres.name" . }}
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: {{ template "postgres.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "postgres.name" . }}
+    spec:
+      containers:
+        - name: postgres
+          image: 'postgres:14'
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: {{ include "postgres.fullname" . }}
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgresdata
+          livenessProbe:
+            exec:
+              command:
+                - pg_isready
+                - "-h"
+                - localhost
+                - "-U"
+                - {{ .Values.postgresql.postgresUser }}
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 6
+          readinessProbe:
+            exec:
+              command:
+                - pg_isready
+                - "-h"
+                - localhost
+                - "-U"
+                - {{ .Values.postgresql.postgresUser }}
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+      volumes:
+        - name: postgresdata
+          persistentVolumeClaim:
+            claimName: {{ include "postgres.fullname" . }}
