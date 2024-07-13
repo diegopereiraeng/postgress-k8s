@@ -12,4 +12,4 @@ spec:
     - {{ .Values.postgresql.persistence.accessMode }}
   storageClassName: {{ .Values.postgresql.persistence.storageClass }}
   hostPath:
-    path: /data/postgresql
+    path: /data2/postgresql
