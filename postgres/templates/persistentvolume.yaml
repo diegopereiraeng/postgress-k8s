@@ -1,14 +1,15 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: {{ include "postgres.fullname" . }}
+  name: {{ include "postgresql.fullname" . }}-pv
   labels:
-    app: {{ template "postgres.name" . }}
+    app: postgresql
 spec:
-  storageClassName: {{ .Values.postgresql.persistence.storageClass }}
   capacity:
     storage: {{ .Values.postgresql.persistence.size }}
+  volumeMode: Filesystem
   accessModes:
     - {{ .Values.postgresql.persistence.accessMode }}
+  storageClassName: {{ .Values.postgresql.persistence.storageClass }}
   hostPath:
     path: /data/postgresql

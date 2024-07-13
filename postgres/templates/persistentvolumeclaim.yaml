@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "postgres.fullname" . }}
+  name: {{ include "postgresql.fullname" . }}-pvc
   labels:
-    app: {{ template "postgres.name" . }}
+    app: postgresql
 spec:
-  storageClassName: {{ .Values.postgresql.persistence.storageClass }}
   accessModes:
     - {{ .Values.postgresql.persistence.accessMode }}
   resources:
     requests:
       storage: {{ .Values.postgresql.persistence.size }}
+  storageClassName: {{ .Values.postgresql.persistence.storageClass }}

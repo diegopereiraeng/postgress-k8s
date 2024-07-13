@@ -1,4 +1,6 @@
 apiVersion: v2
-name: postgres
+name: postgresql
 version: 0.1.0
 description: PostgreSQL database deployment on Kubernetes
+type: application
+appVersion: "1.0"
