@@ -4,7 +4,7 @@ metadata:
   name: postgresql-ingress
 spec:
   rules:
-    - host: postgress.harness-demo.site
+    - host: postgres.harness-demo.site
       http:
         paths:
           - pathType: ImplementationSpecific
